@@ -1,6 +1,5 @@
 # image-to-abstract-coloring
-Python tool for create coloring for unity games
-Transform an image into an abstract image with limited colors
+Transform an image into an abstract image with limited colors.
 Don't use excessively large images as it may take too much time.
 # How to run it
 ```
