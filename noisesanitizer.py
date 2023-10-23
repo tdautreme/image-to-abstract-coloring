@@ -67,7 +67,7 @@ def remove_noise(img, region_size_treshold=200, neighbors_radius=1):
     return new_img, impacted_region_count
 
 
-def sanitize_noise(img, percentage=0.1):
+def sanitize_noise(img, weight=0.1): # weight is the ratio of the diagonal of the image
     has_alpha_channel = img.shape[2] == 4
     if has_alpha_channel:
         mask = img[:,:,3] == 0
@@ -75,8 +75,8 @@ def sanitize_noise(img, percentage=0.1):
 
     pixel_number = img.shape[0] * img.shape[1]
     diagonal_pixel_number = np.sqrt(pixel_number)
-    percentage = 1
-    region_size_treshold = diagonal_pixel_number * percentage
+    weight = 1
+    region_size_treshold = diagonal_pixel_number * weight
     print(region_size_treshold)
 
     cnt = 0
@@ -105,5 +105,5 @@ if __name__ == "__main__":
     filename = path.split("\\")[-1]
     filename_without_extension = filename.split(".")[0]
     img = io.imread(path)
-    sanitize_noise(img, percentage=0.1)
+    sanitize_noise(img, weight=0.1)
     io.imsave(f'{filename_without_extension}_sanitized.png', img)

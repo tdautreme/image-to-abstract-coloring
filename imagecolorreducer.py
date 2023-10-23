@@ -23,6 +23,10 @@ def img_simplify_opti(img, mask, colors, distance=5):
     new_img = np.zeros_like(img)
     height, width, _ = img.shape
     cnt = 0
+    old_percentage = 0
+    mask_sum_false = np.sum(mask)
+    pixel_to_process = height * width - mask_sum_false
+    print(pixel_to_process, "pixels to process")
     for i in range(height):
         for j in range(width):
             if not mask[i, j]:
@@ -33,9 +37,13 @@ def img_simplify_opti(img, mask, colors, distance=5):
                 
                 valid_mask = ~mask[i_min:i_max, j_min:j_max]
 
-                if cnt % 1000 == 0:
-                    print(cnt, "/", height * width)
+                # debug progression
+                cnt_percentage = int(float(cnt) / float(pixel_to_process) * 100)
+                if cnt_percentage != old_percentage:
+                    print(f"{cnt_percentage}%")
+                    old_percentage = cnt_percentage
                 cnt += 1
+                
                 neighbor_region = img[i_min:i_max, j_min:j_max]
                 neighbor_colors = neighbor_region[valid_mask]
                 # NEED OPTIMIZATION
