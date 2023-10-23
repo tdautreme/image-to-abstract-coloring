@@ -166,8 +166,7 @@ cython_debug/
 **/*.gif
 **/*.svg
 **/*.bmp
-**/*.ico
-**/*.txt
+**/*.svg.txt
 
 # ignore empty folder
 **/empty/
