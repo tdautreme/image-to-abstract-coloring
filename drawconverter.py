@@ -8,9 +8,8 @@ import numpy as np
 import skimage.io as io
 import os
 
-if __name__ == "__main__":
-    input_image_path = sys.argv[1]
-    output_folder_path = sys.argv[2]    
+
+def convert_image(input_image_path, output_folder_path):
     filename = input_image_path.split("\\")[-1]
     filename_without_extension = filename.split(".")[0]
     path_builder = f"{output_folder_path}/{filename_without_extension}_"
@@ -62,3 +61,22 @@ if __name__ == "__main__":
     split_svg_by_path(f"{output_folder_path}/{filename_without_extension}_reduced_sanitized.svg", splitted_svg_folder_path, override_color="white")
 
 
+
+if __name__ == "__main__":
+    input_path = sys.argv[1]
+    # if folder find first file that is a png or jpg
+    if os.path.isdir(input_path):
+        input_image_path = None
+        image_extensions = [".png", ".jpg"]
+        for file in os.listdir(input_path):
+            if file.endswith(tuple(image_extensions)):
+                input_image_path = f"{input_path}/{file}"
+                break
+    else:
+        input_image_path = input_path
+
+    input_image_folder_path = input_image_path.split("\\")[:-1]
+    input_image_folder_path = "\\".join(input_image_folder_path)
+    output_folder_path = f"{input_image_folder_path}"
+    convert_image(input_image_path, output_folder_path)
+    

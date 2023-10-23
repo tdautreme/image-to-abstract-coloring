@@ -80,6 +80,7 @@ def sanitize_noise(img, percentage=0.1):
     print(region_size_treshold)
 
     cnt = 0
+    old_impacted_region_count = 0
     while True:
         print(f"iteration {cnt}")
         cnt+=1
@@ -88,6 +89,9 @@ def sanitize_noise(img, percentage=0.1):
         print("")
         if impacted_region_count == 0:
             break
+        if impacted_region_count == old_impacted_region_count:
+            break
+        old_impacted_region_count = impacted_region_count
 
     # if has_alpha_channel:
     #     img = np.dstack((img, np.where(mask, 0, 255)))
