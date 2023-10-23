@@ -1,6 +1,6 @@
 # image-to-abstract-coloring
-Transform an image into an abstract image with limited colors.
-Don't use excessively large images as it may take too much time.
+Transform an image into an abstract image with limited colors.<br>
+Don't use excessively large images as it may take too much time.<br>
 # Install and requirements
 Python 3.11.0<br>
 Use this command to install required packages:<br>
