@@ -1,4 +1,5 @@
 
+import os
 import skimage.io as io
 from sklearn.cluster import KMeans
 import numpy as np
@@ -127,8 +128,8 @@ def reduce_image_colors(img, color_count=5, iteration=1):
 
 if __name__ == "__main__":
     path = sys.argv[1]
-    filename = path.split("\\")[-1]
-    filename_without_extension = filename.split(".")[0]
+    filename = os.path.basename(path)
+    filename_without_extension, extension = os.path.splitext(filename)
     img = io.imread(path)
     img = reduce_image_colors(img)
     io.imsave(f'{filename_without_extension}_colors.png', img)

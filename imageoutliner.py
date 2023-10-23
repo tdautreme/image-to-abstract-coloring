@@ -1,4 +1,5 @@
 
+import os
 import skimage.io as io
 import skimage.measure as measure
 import sys
@@ -96,12 +97,8 @@ def outline_sanitize(img, outline_color=[0,0,0], width=1):
 
 if __name__ == "__main__":
     path = sys.argv[1]
-    filename = path.split("\\")[-1]
-    filename_without_extension = filename.split(".")[0]
+    filename = os.path.basename(path)
+    filename_without_extension, extension = os.path.splitext(filename)
     img = io.imread(path)
-
-    outline_mask = get_outline_binary_mask(img)
-    outline_img = np.full((img.shape[0], img.shape[1], 3), [255, 255, 255], dtype=np.uint8)
-    outline_img[outline_mask] = [0, 0, 0]
-
+    outline_img = make_outline_img(img)
     io.imsave(f'{filename_without_extension}_outline.png', outline_img)

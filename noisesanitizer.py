@@ -1,3 +1,4 @@
+import os
 import skimage.measure as measure
 import numpy as np
 import sys
@@ -102,8 +103,8 @@ def sanitize_noise(img, weight=0.1): # weight is the ratio of the diagonal of th
 
 if __name__ == "__main__":
     path = sys.argv[1]
-    filename = path.split("\\")[-1]
-    filename_without_extension = filename.split(".")[0]
+    filename = os.path.basename(path)
+    filename_without_extension, extension = os.path.splitext(filename)
     img = io.imread(path)
     sanitize_noise(img, weight=0.1)
     io.imsave(f'{filename_without_extension}_sanitized.png', img)

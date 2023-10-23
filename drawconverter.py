@@ -7,13 +7,12 @@ import os
 import argparse
 
 def convert_image(input_image_path, output_folder_path, color_count=10, sanitize_weight=0.1):
-    filename = input_image_path.split("\\")[-1]
-    filename_without_extension = filename.split(".")[0]
+    filename = os.path.basename(input_image_path)
+    filename_without_extension, extension = os.path.splitext(filename)
     path_builder = f"{output_folder_path}/{filename_without_extension}_"
 
     reduced_img_output_path = f"{path_builder}reduced.png"
     sanitized_reduced_img_output_path = f"{path_builder}reduced_sanitized.png"
-
 
     # create folder if not exists
     os.makedirs(output_folder_path, exist_ok=True)
