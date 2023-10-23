@@ -2,12 +2,8 @@ import sys
 sys.path.append('./')
 from imagecolorreducer import reduce_image_colors
 from noisesanitizer import sanitize_noise
-from imageoutliner import get_outline_binary_mask, make_outline_img, outline_sanitize
-from svgsplitter import split_svg_by_path
-import numpy as np
 import skimage.io as io
 import os
-
 
 def convert_image(input_image_path, output_folder_path):
     filename = input_image_path.split("\\")[-1]
@@ -16,8 +12,6 @@ def convert_image(input_image_path, output_folder_path):
 
     reduced_img_output_path = f"{path_builder}reduced.png"
     sanitized_reduced_img_output_path = f"{path_builder}reduced_sanitized.png"
-    outline_img_output_path = f"{path_builder}reduced_sanitized_outline.png"
-    outline_img_output_path = f"{path_builder}reduced_sanitized_outline_sanitized.png"
 
 
     # create folder if not exists
@@ -54,13 +48,6 @@ def convert_image(input_image_path, output_folder_path):
         DOWNLOAD reduced_sanitized.svg
         RUN THIS SCRIPT AGAIN
     '''
-    # create splitted svg folder
-    splitted_svg_folder_path = f"{output_folder_path}/{filename_without_extension}_splitted_svg"
-    os.makedirs(splitted_svg_folder_path, exist_ok=True)
-    # create svgs
-    split_svg_by_path(f"{output_folder_path}/{filename_without_extension}_reduced_sanitized.svg", splitted_svg_folder_path, override_color="white")
-
-
 
 if __name__ == "__main__":
     input_path = sys.argv[1]
