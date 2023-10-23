@@ -21,3 +21,7 @@ options:
                         Level of sanitization applied to the image (0 to 1) (default: 0.1)
 ```
 # What does it look like
+![Source image](https://github.com/tdautreme/image-to-abstract-coloring/blob/main/example/lion.jpg?raw=true)
+![Color reduced](https://github.com/tdautreme/image-to-abstract-coloring/blob/main/example/lion_reduced.png?raw=true)
+![Color reduced and sanitized](https://github.com/tdautreme/image-to-abstract-coloring/blob/main/example/lion_reduced_sanitized.png?raw=true)
+
