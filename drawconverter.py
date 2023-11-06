@@ -66,7 +66,7 @@ def main(input_path, output_folder_path=None, color_count=10, sanitize_weight=0.
     input_image_folder_path = "\\".join(input_image_folder_path)
     if output_folder_path is None:
         output_folder_path = f"{input_image_folder_path}"
-    convert_image(input_image_path, output_folder_path)
+    convert_image(input_image_path, output_folder_path, color_count, sanitize_weight)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Transform an image into an abstract image with limited colors.\nDon't use excessively large images as it may take too much time.")
